@@ -1,102 +1,113 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+    <!-- Sidebar (Show above 900px)-->
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered :breakpoint="900">
+      <div class="dashboard-sidebar-panel q-pa-xl">
+        <div class="dashboard-sidebar-panel__brand">
+          <div class="dashboard-sidebar-panel__brand-logo">
+            <img src="../assets/Logo.svg" alt="aspire-logo" />
+          </div>
+          <div class="dashboard-sidebar-panel__brand-tagline">
+            Trusted way of banking for 3,000+ SMEs and startups in Singapore
+          </div>
+        </div>
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+        <ul class="dashboard-sidebar-panel__nav-list q-mt-xl">
+          <li
+            v-for="item in navigationListItems"
+            :key="item.itemLabel"
+            :class="['dashboard-sidebar-panel__nav-list--item', {'active': activeTab === item.itemLabel}]"
+          >
+            <span>
+              <img :src="getIcon(item.icon)" :alt="item.itemLabel" />
+            </span>
+            <span class="label">{{ item.itemLabel }}</span>
+          </li>
+        </ul>
+      </div>
     </q-drawer>
 
+    <!-- Main Content -->
     <q-page-container>
-      <router-view />
+      <router-view class="main-section" />
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue';
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 
-const linksList: EssentialLinkProps[] = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
+interface NavItem {
+  icon: string;
+  itemLabel: string;
+}
 
 const leftDrawerOpen = ref(false);
+const activeTab= ref("Cards");
 
-function toggleLeftDrawer () {
+const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
-}
+};
+
+const navigationListItems: NavItem[] = [
+  { icon: "Home.svg", itemLabel: "Home" },
+  { icon: "Card.svg", itemLabel: "Cards" },
+  { icon: "Payments.svg", itemLabel: "Payments" },
+  { icon: "Credit.svg", itemLabel: "Credit" },
+  { icon: "Account.svg", itemLabel: "Settings" },
+];
+
+const router = useRouter();
+
+const getIcon = (iconName: string) => {
+  return new URL(`../assets/${iconName}`, import.meta.url).href;
+};
 </script>
+
+<style lang="scss" scoped>
+.dashboard-sidebar-panel {
+  width: 340px;
+  background-color: $primary;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  &__brand {
+    margin-bottom: 32px;
+    &-logo {
+      margin-bottom: 19px;
+    }
+    &-tagline {
+      color: #fff;
+      opacity: 30%;
+      font-size: 15px;
+    }
+  }
+  &__nav-list {
+    max-height: 500px;
+    height: calc(45vh);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    color: #fff;
+
+    &--item {
+      display: flex;
+      cursor: pointer;
+
+      .label {
+        font-size: 16px;
+        margin-left: 14px;
+      }
+    }
+    .active{
+      color: $secondary;
+      font-weight: 600;
+    }
+  }
+}
+</style>
