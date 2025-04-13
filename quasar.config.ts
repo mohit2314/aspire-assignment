@@ -64,7 +64,7 @@ export default defineConfig((/* ctx */) => {
 
       extendViteConf(viteConf) {
         viteConf.plugins = viteConf.plugins || []
-        viteConf.plugins.push(vue())
+        // viteConf.plugins.push(vue())
       },
       // viteVuePluginOptions: {},
 
