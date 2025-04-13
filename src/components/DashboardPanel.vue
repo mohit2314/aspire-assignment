@@ -40,12 +40,12 @@
               :name="debitCard.id"
               style="padding: 0px"
             >
-              <DebitCard :debit-card="debitCard"></DebitCard>
+              <DebitCard :debit-card="debitCard" :isFreeze="isCurrentCardFreezeStatus"></DebitCard>
             </q-carousel-slide>
           </q-carousel>
         </div>
         <!-- Card features options -->
-        <CardFeatures />
+        <CardFeatures :current-card-id="slide" :isFreeze="isCurrentCardFreezeStatus"/>
       </div>
       <div class="right-col col-xs-12 col-sm-8 col-md-6 mobile__bottom-section">
         <div style="max-width: 366px; margin: auto">
@@ -115,20 +115,7 @@ const isCurrentCardFreezeStatus = computed(() => {
   );
   return currentCard ? currentCard.isFrozen : false;
 });
-function handleCardActions(cardAction: string) {
-  const currentCard = userDebitCards.value.find(
-    (card) => card.id === slide.value
-  );
 
-  if (!currentCard) return;
-  if (cardAction === "freeze") {
-    debitCardStore.toggleFreeze(currentCard.id);
-    console.log(
-      `Card ${currentCard.id} is now`,
-      currentCard.isFrozen ? "Frozen" : "Unfrozen"
-    );
-  }
-}
 </script>
 
 <style lang="scss">

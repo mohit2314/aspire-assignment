@@ -5,7 +5,7 @@
         <img :src="getIconUrl('Freeze_card.svg')" alt="" />
       </div>
       <div class="feature__label">
-        {{ isCurrentCardFreezeStatus ? "Unfreeze card" : "Freeze card" }}
+        {{ isFreeze ? "Unfreeze card" : "Freeze card" }}
       </div>
     </div>
     <div v-for="feature in featuresList" :key="feature" class="feature">
@@ -20,7 +20,15 @@
 </template>
 
 <script setup lang='ts'>
+import { computed, defineProps } from "vue";
 import { useImage } from "../composables/utils";
+import { useDebitCardStore } from "../stores/debitCardStore";
+
+const props = defineProps<{
+  currentCardId: string;
+  isFreeze: boolean;
+}>()
+const debitCardStore = useDebitCardStore();
 
 const { getIconUrl } = useImage();
 const featuresList = [
@@ -41,6 +49,23 @@ const featuresList = [
     label: "Cancel card",
   },
 ];
+
+const userDebitCards = computed(() => debitCardStore.cards);
+
+function handleCardActions(cardAction: string) {
+  const currentCard = userDebitCards.value.find(
+    (card) => card.id === props.currentCardId
+  );
+
+  if (!currentCard) return;
+  if (cardAction === "freeze") {
+    debitCardStore.toggleFreeze(currentCard.id);
+    console.log(
+      `Card ${currentCard.id} is now`,
+      currentCard.isFrozen ? "Frozen" : "Unfrozen"
+    );
+  }
+}
 </script>
 
 <style lang='scss'>
