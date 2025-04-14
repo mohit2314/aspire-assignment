@@ -31,7 +31,7 @@
             navigation
             :navigation-position="'bottom'"
             infinite
-            height="300px"
+            :height="carouselHeight"
             class="bg-transparent rounded-borders"
           >
             <q-carousel-slide
@@ -97,6 +97,9 @@ import { ref, computed } from "vue";
 import { onMounted } from "vue";
 import { useDebitCardStore } from "../stores/debitCardStore";
 import { useImage } from "../composables/utils";
+import { useQuasar } from 'quasar'
+
+const $q = useQuasar()
 
 const { getIconUrl } = useImage();
 const debitCardStore = useDebitCardStore();
@@ -106,6 +109,9 @@ onMounted(() => {
 });
 const slide = ref("1");
 
+const carouselHeight = computed(() => {
+  return $q.screen.lt.sm ? '280px' : '300px'
+})
 const userDebitCards = computed(() => debitCardStore.cards);
 const loading = computed(() => debitCardStore.loading);
 
@@ -143,6 +149,9 @@ const isCurrentCardFreezeStatus = computed(() => {
   padding: 36px;
   flex-wrap: wrap;
   overflow: hidden;
+  @media (max-width: $breakpoint-sm-min) {
+    margin-top: 0px;
+  }
 }
 
 .left-col {
@@ -164,6 +173,7 @@ const isCurrentCardFreezeStatus = computed(() => {
   color: #01d167;
   font-size: 12px;
   font-weight: 600;
+  margin-bottom: 12px;
 }
 
 .carousel__section {

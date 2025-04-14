@@ -1,8 +1,9 @@
 // app global css in SCSS form
-*{
+* {
   font-family: 'Open Sans', sans-serif;
   padding: 0;
 }
+
 // app global css in SCSS form
 
 .small-screen-only {
@@ -13,12 +14,15 @@
   @media (max-width: $breakpoint-sm-max) {
     display: none;
   }
+
   @media (max-width: $breakpoint-md-min) {
     display: none;
   }
+
   @media (max-width: 700px) {
     display: block;
   }
+
   @media (min-width: 701px) {
     display: none !important;
   }
@@ -28,9 +32,11 @@
   @media (max-width: 808px) {
     padding: 0px !important;
   }
+
   @media (max-width: 999px) {
     padding: 0px !important;
   }
+
   // @media (min-width: 1100px) {
   //   width: 906px;
   // }
@@ -50,16 +56,19 @@
     color: #fff !important;
   }
 }
+
 .new__card-btn {
   @media (max-width: 601px) {
     display: none;
   }
 }
+
 .new__card-link {
   @media (min-width: 601px) {
     display: none;
   }
 }
+
 // .cards__tab--row, .carousel__section {
 //     @media (max-width:601px){
 //       padding: 12px;
@@ -71,6 +80,7 @@
     display: none !important;
   }
 }
+
 .mobile__font-size {
   @media (max-width: 600px) {
     font-size: 22px !important;
@@ -82,52 +92,59 @@
   .features__section {
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
-    margin-top:364px !important;
+    margin-top: 444px !important;
     position: relative;
-    z-index:2;
+    z-index: 2;
   }
-  
+
   .carousel__section {
     padding: 12px;
-    position: fixed;  
-    top: 104px;
-}
-.cards__tab--row{
-    padding: 12px;
-    position: fixed;  
-    top: 74px;
-    font-size: 12px !important;
-}
+    position: fixed;
+    top: 134px;
+  }
 
-.mobile-logo{
+  .mobile-logo {
     position: fixed;
     // margin-top: 12px;
     top: 2px;
 
-}
+  }
+
   .view__card-number {
     background-color: #fff !important;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    margin-bottom: 0px !important;
+
   }
+
   .info__section {
-      padding: 12px;
-      position: fixed;
-      top: 12px;
-    }
-    .cards__tab--row{
-        position: fixed;
-        top: 74px;
-        margin-bottom: 14px;
-    }
-  .carousel__section{
+    padding: 12px;
+    position: fixed;
+    top: 12px;
+  }
+
+  .cards__tab--row {
+    position: fixed;
+    top: 86px;
+    margin-bottom: 14px;
+    padding: 12px;
+    font-size: 12px !important;
+  }
+
+
+  .balance__info {
+    margin-top: 9px;
+  }
+  .carousel__section {
     //   position: fixed;
     //   z-index: 0;
   }
 
-  .accordian-header{
-      margin-top:16px;
+  .accordian-header {
+    margin-top: 16px;
   }
+
   .mobile__bottom-section {
     background-color: #fff !important;
     // position: fixed;
@@ -136,7 +153,8 @@
     // margin-bottom: 28px;
 
   }
-    .brand-col{
-       display: none !important;
- }
+
+  .brand-col {
+    display: none !important;
+  }
 }

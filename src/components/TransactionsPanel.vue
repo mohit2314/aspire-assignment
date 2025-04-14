@@ -67,8 +67,7 @@ const transactionsList = [
 .recent__transaction--content {
   padding: 8px 16px;
   outline: 1px solid #f0f0f0;
-}
-.transaction__row {
+  .transaction__row {
   // width: 318px;
   padding-bottom: 16px;
   border-bottom: 1px solid #f0f0f0;
@@ -91,6 +90,7 @@ const transactionsList = [
     flex-direction: column;
     width: 60%;
     .name {
+      color: $text-black-300;
       font-size: 14px;
       font-weight: 600;
     }
@@ -121,4 +121,6 @@ const transactionsList = [
     font-weight: 600;
   }
 }
+}
+
 </style>

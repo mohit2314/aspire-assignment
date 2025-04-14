@@ -19,19 +19,10 @@
       <div class="new__card--cta self-end">
         <div class="q-mt-lg flex align-center new__card-link xs">
           <img src="../assets/box.svg" alt="" class="q-mr-xs" />
-          <span
-            style="color: #23cefd; font-weight: 600"
-            @click="showAddCardModal = true"
-            >New card</span
-          >
+          <span style="color: #23cefd; font-weight: 600" @click="showAddCardModal = true">New card</span>
         </div>
-        <q-btn
-          class="new__card-btn gt-xs"
-          icon="add_circle"
-          label="New card"
-          no-caps
-          @click="showAddCardModal = true"
-        ></q-btn>
+        <q-btn class="new__card-btn gt-xs" icon="add_circle" label="New card" no-caps
+          @click="showAddCardModal = true"></q-btn>
       </div>
     </div>
     <AddCardModal v-model="showAddCardModal" @add-card="addCardToList" />
@@ -63,9 +54,11 @@ const addCardToList = (cardName: string) => {
   align-items: center;
   width: 100%;
   margin-bottom: 34px;
+
   @media (max-width: $breakpoint-xs) {
     margin-bottom: 0;
   }
+
   .mobile-logo {
     max-width: 500px;
     display: flex;
@@ -73,8 +66,9 @@ const addCardToList = (cardName: string) => {
     width: 100%;
     padding: 12px 36px 0px 0px;
   }
+
   .info__section {
-    min-width: 414px;
+    min-width: 372px;
     // max-width: 906px;
     // padding: 12px;
     display: flex;
@@ -85,13 +79,17 @@ const addCardToList = (cardName: string) => {
   .balance__col {
     display: flex;
     flex-direction: column;
+
     .label {
       font-size: 14px;
       color: $text-black-300;
     }
+
     .balance__info {
       display: flex;
       align-items: center;
+      margin-top: 16px;
+
       .currency__badge {
         text-align: center;
         background-color: $secondary;
@@ -112,6 +110,7 @@ const addCardToList = (cardName: string) => {
       }
     }
   }
+
   .new__card-btn {
     background: $secondary-text;
     color: white;
