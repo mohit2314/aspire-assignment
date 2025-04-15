@@ -7,8 +7,8 @@ A responsive and interactive dashboard application built using the **Quasar Fram
 
 ### 1. **CSS Challenge**
 - Implemented the UI for both screen sizes based on the provided Adobe XD designs:
-  - ✅ Desktop View
-  - ✅ Mobile View
+  - ✅ Desktop View [Desktop view recording](https://www.loom.com/share/ef15fc469f07415d87f675ecc8f2e6d5?sid=44ace938-3a84-446b-bdb6-e189ec1c6853)
+  - ✅ Mobile View [Mobile view recording](https://www.loom.com/share/7b8b7d2fee064cb2bd557bff54b57d18?sid=6e032518-cfb5-41db-8b6b-55c68251e288)
 
 ### 2. **Code Challenge**
 - Developed features with API-style architecture.
